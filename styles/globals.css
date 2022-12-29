@@ -105,3 +105,28 @@ a {
     color-scheme: dark;
   }
 }
+
+@font-face {
+	font-family: 'Neon Tubes 2';
+	src: url('../public/assets/fonts/NeonTubes2-Regular.eot');
+	src: url('../public/assets/fonts/NeonTubes2-Regular.eot?#iefix')
+			format('embedded-opentype'),
+		url('../public/assets/fonts/NeonTubes2-Regular.woff2') format('woff2'),
+		url('../public/assets/fonts/NeonTubes2-Regular.woff') format('woff'),
+		url('../public/assets/fonts/NeonTubes2-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: '10'
+}
+
+.main-container canvas {
+  width: 50%;
+  height: 100%;
+}
