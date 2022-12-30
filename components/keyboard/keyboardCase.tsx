@@ -1,8 +1,7 @@
-import { KeyLayout } from './keyLayout'
 import { useGLTF } from '@react-three/drei'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
-import { BufferGeometry, Color, Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three'
+import { Color, Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three'
 
 type GLTFResult = GLTF
     & {

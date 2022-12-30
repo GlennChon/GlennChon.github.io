@@ -1,5 +1,5 @@
-import { BufferGeometry, Color, Euler, Group, Mesh, Vector3 } from 'three'
-import React, { useEffect, useRef, useState } from 'react'
+import { Color, Euler, Group, Mesh, Vector3 } from 'three'
+import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { extend, useFrame } from '@react-three/fiber'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'

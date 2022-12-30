@@ -1,5 +1,4 @@
-import { Tooltip } from '@mui/material'
-import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useEventListener } from 'usehooks-ts'
 import { Color, Euler, Vector3 } from 'three'
 import { KeyCap } from './keycap'

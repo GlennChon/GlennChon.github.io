@@ -1,10 +1,7 @@
-import { useCallback, useState } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import css from "../styles/Home.module.css";
 import { Keyboard } from '../components/keyboard'
-import { useEventListener } from 'usehooks-ts'
-import { Euler, Vector3 } from 'three';
 
 
 

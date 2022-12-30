@@ -1,5 +1,4 @@
 import { Vector3 } from "three";
-import { isExternalModuleReference } from "typescript";
 import { KeyboardCase } from "./keyboardCase";
 import { KeyLayout } from "./keyLayout";
 
