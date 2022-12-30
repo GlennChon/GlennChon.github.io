@@ -1,4 +1,4 @@
-const debug = process.env.NODE_ENV !== "production";
+const isProd = process.env.NODE_ENV !== "production";
 
 module.exports = {
   exportPathMap: function () {
@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   //assetPrefix: '',
-  assetPrefix: !debug ? '/Profile/' : '',
+  assetPrefix: !isProd ? '/' : '',
   webpack: (config, { dev }) => {
     // Perform customizations to webpack config
     // console.log('webpack');
