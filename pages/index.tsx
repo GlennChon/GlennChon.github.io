@@ -1,7 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import css from "../styles/Home.module.css";
-import { Keyboard } from './components/keyboard'
+import { Keyboard } from '../components/keyboard'
 
 
 
