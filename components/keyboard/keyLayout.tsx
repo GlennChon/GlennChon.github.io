@@ -70,7 +70,7 @@ export const KeyLayout = (props: KeysProps) => {
             if (e.code === 'Tab') autoKeyUp('Tab', 500)
             autoKeyUp(e.code)
         }
-    }, [])
+    }, [pressedKeys])
 
     const isKeyPressed = (keys: string[]): boolean => {
         if (!keys) return false
