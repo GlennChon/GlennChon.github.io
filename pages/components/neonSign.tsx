@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material'
-import { signFlicker, signFlickerOn } from '../styles/animations'
+import { signFlicker, signFlickerOn } from '../../styles/animations'
 export const NeonSign = () => (
     <Grid
         item
