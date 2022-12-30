@@ -2,8 +2,8 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  assetPrefix: isProd ? '/profile' : '',
-  basePath: isProd ? '/profile' : '',
+  assetPrefix: '/profile',
+  basePath: '/profile',
   images: {
     unoptimized: true,
   },
