@@ -1,10 +1,24 @@
-// next.config.js
-const isProd = process.env.NODE_ENV === 'production'
+const debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  assetPrefix: '/profile',
-  basePath: '/profile',
-  images: {
-    unoptimized: true,
+  exportPathMap: function () {
+    return {
+      "/": { page: "/" },
+    }
   },
+  //assetPrefix: '',
+  assetPrefix: !debug ? '/profile/' : '',
+  webpack: (config, { dev }) => {
+    // Perform customizations to webpack config
+    // console.log('webpack');
+    // console.log(config.module.rules, dev);
+    config.module.rules = config.module.rules.map(rule => {
+      if (rule.loader === 'babel-loader') {
+        rule.options.cacheDirectory = false
+      }
+      return rule
+    })
+    // Important: return the modified config
+    return config
+  }
 }
