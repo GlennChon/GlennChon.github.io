@@ -1,24 +1,28 @@
-const isProd = process.env.NODE_ENV !== "production";
+// next.config.js
 
-module.exports = {
-  exportPathMap: function () {
-    return {
-      "/": { page: "/" },
-    }
-  },
-  //assetPrefix: '',
-  assetPrefix: !isProd ? '/' : '',
-  webpack: (config, { dev }) => {
-    // Perform customizations to webpack config
-    // console.log('webpack');
-    // console.log(config.module.rules, dev);
-    config.module.rules = config.module.rules.map(rule => {
-      if (rule.loader === 'babel-loader') {
-        rule.options.cacheDirectory = false
-      }
-      return rule
-    })
-    // Important: return the modified config
-    return config
-  }
+const isGithubActions = process.env.GITHUB_ACTIONS || false
+
+let assetPrefix = ''
+let basePath = '/'
+
+if (isGithubActions) {
+  // trim off `<owner>/`
+  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+
+  assetPrefix = `/${repo}/`
+  basePath = `/${repo}`
 }
+
+const nextConfig = isGithubActions
+  ? {
+    reactStrictMode: true,
+    swcMinify: true,
+    assetPrefix,
+    basePath,
+  }
+  : {
+    reactStrictMode: true,
+    swcMinify: true,
+  };
+
+module.exports = nextConfig;
