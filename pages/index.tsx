@@ -28,7 +28,7 @@ export default function Home() {
           maxDistance={100}
         />
       </Canvas>
-      <div>test2</div>
+      <div>test3</div>
     </div>
   )
 }
