@@ -79,7 +79,7 @@ let defaultProps = {
 export const KeyCap = (
     props: KeyCapProps
 ) => {
-    const { nodes, materials } = useGLTF('./keycaps.glb') as unknown as GLTFResult
+    const { nodes, materials } = useGLTF('./components/keyboard/keycaps.glb') as unknown as GLTFResult
 
     const keyCap = useRef<Group>(null)
     const capMesh = useRef<Mesh>(null)
@@ -151,4 +151,4 @@ export const KeyCap = (
 }
 
 KeyCap.defaultProps = defaultProps;
-useGLTF.preload('./keycaps.glb')
+useGLTF.preload('./components/keyboard/keycaps.glb')
