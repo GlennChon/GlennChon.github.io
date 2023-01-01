@@ -43,7 +43,7 @@ let defaultProps = {
 export const KeyboardCase = (
     props: KeyCaseProps
 ) => {
-    const { nodes, materials } = useGLTF('models/keyboardCase.glb') as unknown as GLTFResult
+    const { nodes } = useGLTF('assets/models/keyboardCase.glb') as unknown as GLTFResult
     const keyboardMesh = useRef<Group>(null!)
     const casePlateMesh = useRef<Mesh>(null!)
     const caseMesh = useRef<Mesh>(null!)
@@ -89,4 +89,4 @@ export const KeyboardCase = (
 
 
 KeyboardCase.defaultProps = defaultProps;
-useGLTF.preload('models/keyboardCase.glb')
+useGLTF.preload('assets/models/keyboardCase.glb')

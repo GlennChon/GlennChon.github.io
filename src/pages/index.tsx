@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import css from "../styles/Home.module.css";
 import { Keyboard } from 'components/keyboard'
 
@@ -16,7 +16,6 @@ export default function Home() {
         camera={{ position: [-15, 45, 10] }}
       >
         <Keyboard />
-        {/* <Environment preset="city" blur={0} /> */}
         <ambientLight intensity={.1} />
         <directionalLight
           intensity={0.4}

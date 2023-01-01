@@ -1,30 +1,40 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es2021",
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "allowUnreachableCode": false,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,    
-		"baseUrl": "src/"
+    "baseUrl": "src/",
+    "incremental": true
   },
   "include": [
-    "next-env.d.ts", 
-    "**/*.ts", 
+    "next-env.d.ts",
+    "**/*.ts",
     "**/*.tsx",
-		"src/**/*",
-    "public/assets/**/*",
-		"styles/**/*.tsx",
-		"styles/**/*.ts",
-		"styles"
+    "public/**/*",
+    "src/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -79,12 +79,12 @@ let defaultProps = {
 export const KeyCap = (
     props: KeyCapProps
 ) => {
-    const { nodes, materials } = useGLTF('models/keycaps.glb') as unknown as GLTFResult
+    const { nodes } = useGLTF('assets/models/keycaps.glb') as unknown as GLTFResult
 
     const keyCap = useRef<Group>(null)
     const capMesh = useRef<Mesh>(null)
     const charMesh = useRef<Mesh>(null)
-    const [textGeo, setTextGeo] = useState<TextGeometry[]>([
+    const [textGeo, _setTextGeo] = useState<TextGeometry[]>([
         new TextGeometry(props.primaryText, props.textOptions),
         // @ts-ignore
         new TextGeometry(props.secondaryText, props.textOptions2 || props.textOptions)
@@ -151,4 +151,4 @@ export const KeyCap = (
 }
 
 KeyCap.defaultProps = defaultProps;
-useGLTF.preload('models/keycaps.glb')
+useGLTF.preload('assets/models/keycaps.glb')

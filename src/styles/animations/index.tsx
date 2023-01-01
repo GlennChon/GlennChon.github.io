@@ -92,20 +92,4 @@ from, 0%, 19.8%, 20.2%, 23.8%, 24.2%, 54.8%, 55.2%, 100%, to {
 }
 `
 
-const fall = keyframes`
-0% {
-    opacity: 0;
-}
-3% {
-    opacity: 0.9;
-}
-90% {
-    opacity: 0.9;
-}
-100% {
-    transform: translate(0, 23vh);
-    opacity: 0;
-}
-`
-
 export { signFlicker, signFlickerOn }
