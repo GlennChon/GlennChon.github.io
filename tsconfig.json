@@ -32,6 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     "public/**/*",
+    "public/assets/**/*",
     "src/**/*"
   ],
   "exclude": [

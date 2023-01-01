@@ -5,7 +5,7 @@ import { extend, useFrame } from '@react-three/fiber'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { GLTF } from 'three-stdlib'
-import Mplus from '../fonts/Mplus_Round.json'
+import Mplus from './fonts/Mplus_Round.json'
 extend({ TextGeometry })
 
 type GLTFResult = GLTF
