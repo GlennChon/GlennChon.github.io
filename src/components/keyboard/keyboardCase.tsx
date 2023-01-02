@@ -29,14 +29,14 @@ type KeyCaseProps = {
 let defaultProps = {
     color: {
         primary: new Color("#bdbeba"),
-        secondary: new Color("#acaea9"),
+        secondary: new Color("#8a8b88"),
     },
     groupPos: new Vector3(0, 0, 0),
     groupScale: new Vector3(100, 100, 100),
     groupRot: new Euler(0, 0, 0),
     casePos: new Vector3(0, 0, 0),
     caseRot: new Euler(0, 0, 0),
-    casePlatePos: new Vector3(0, 0.007, 0),
+    casePlatePos: new Vector3(0, 0.004, 0),
     casePlateRot: new Euler(0, 0, 0),
 }
 

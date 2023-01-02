@@ -3,7 +3,7 @@ import { useEventListener } from 'usehooks-ts'
 import { Color, Euler, Vector3 } from 'three'
 import { KeyCap } from './keycap'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
-import Mplus from '../fonts/Mplus_Round.json'
+import Mplus from './fonts/Mplus_Round.json'
 import { capTextPos } from './keys'
 
 // Font
@@ -134,7 +134,7 @@ export const KeyLayout = (props: KeysProps) => {
             {/* R2 */}
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(0.45, -0.14, 1.9)}
+                groupPos={new Vector3(0.45, -0.14, 2)}
                 capType={'R2_150'}
                 primaryText={'↹'}
                 secondaryText={'Tab'}
@@ -155,7 +155,7 @@ export const KeyLayout = (props: KeysProps) => {
                             key={key.code}
 
                             capType={'R2_100'}
-                            groupPos={new Vector3(2.8 + offset, -0.14, 1.9)}
+                            groupPos={new Vector3(2.8 + offset, -0.14, 2)}
                             color={capColors.alpha}
                             primaryText={key.primary}
                             secondaryText={key.secondary}
@@ -173,7 +173,7 @@ export const KeyLayout = (props: KeysProps) => {
                         <KeyCap
                             key={key.code}
                             capType={'R2_100'}
-                            groupPos={new Vector3(21.89 + offset, -0.14, 1.9)}
+                            groupPos={new Vector3(21.89 + offset, -0.14, 2)}
                             color={capColors.alpha}
                             primaryText={key.primary}
                             secondaryText={key.secondary}
@@ -188,7 +188,7 @@ export const KeyLayout = (props: KeysProps) => {
             }
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(26.15, -0.14, 1.9)}
+                groupPos={new Vector3(26.15, -0.14, 2)}
                 capType={'R2_150'}
                 primaryText={`←`}
                 textOptions={{ ...defaultTextOpts, size: .05 }}
@@ -198,7 +198,7 @@ export const KeyLayout = (props: KeysProps) => {
             />
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(28.5, -0.14, 1.9)}
+                groupPos={new Vector3(28.5, -0.14, 2)}
                 capType={'R2_100'}
                 primaryText={'Delete'}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
@@ -208,7 +208,7 @@ export const KeyLayout = (props: KeysProps) => {
             {/* R3 */}
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(0.67, -0.16, 3.8)}
+                groupPos={new Vector3(0.67, -0.16, 4)}
                 capType={'R3_175'}
                 primaryText={'Caps Lock'}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
@@ -224,7 +224,7 @@ export const KeyLayout = (props: KeysProps) => {
                         <KeyCap
                             key={key.code}
                             capType={'R3_100'}
-                            groupPos={new Vector3(3.26 + offset, -0.16, 3.8)}
+                            groupPos={new Vector3(3.26 + offset, -0.16, 4)}
                             color={capColors.alpha}
                             primaryText={key.primary}
                             textOptions={defaultTextOpts}
@@ -241,7 +241,7 @@ export const KeyLayout = (props: KeysProps) => {
                         <KeyCap
                             key={key.code}
                             capType={'R3_100'}
-                            groupPos={new Vector3(20.485 + offset, -0.16, 3.8)}
+                            groupPos={new Vector3(20.485 + offset, -0.16, 4)}
                             color={capColors.alpha}
                             primaryText={key.primary}
                             secondaryText={key.secondary}
@@ -256,7 +256,7 @@ export const KeyLayout = (props: KeysProps) => {
             }
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(25.47, -0.16, 3.8)}
+                groupPos={new Vector3(25.47, -0.16, 4)}
                 capType={'R3_225'}
                 primaryText={'↵'}
                 secondaryText={'Enter'}
@@ -270,7 +270,7 @@ export const KeyLayout = (props: KeysProps) => {
             />
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(28.5, -0.16, 3.8)}
+                groupPos={new Vector3(28.5, -0.16, 4)}
                 capType={'R3_100'}
                 primaryText={'PgUp'}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
@@ -281,7 +281,7 @@ export const KeyLayout = (props: KeysProps) => {
             {/* R4 */}
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(1.12, -0.14, 5.7)}
+                groupPos={new Vector3(1.12, -0.14, 6)}
                 capType={'R4_225'}
                 primaryText={'\u21e7'}
                 secondaryText={'Shift'}
@@ -301,7 +301,7 @@ export const KeyLayout = (props: KeysProps) => {
                         <KeyCap
                             key={key.code}
                             capType={'R4_100'}
-                            groupPos={new Vector3(4.15 + offset, -0.14, 5.7)}
+                            groupPos={new Vector3(4.15 + offset, -0.14, 6)}
                             color={capColors.alpha}
                             primaryText={key.primary}
                             textOptions={defaultTextOpts}
@@ -318,7 +318,7 @@ export const KeyLayout = (props: KeysProps) => {
                         <KeyCap
                             key={key.code}
                             capType={'R4_100'}
-                            groupPos={new Vector3(17.55 + offset, -0.14, 5.7)}
+                            groupPos={new Vector3(17.55 + offset, -0.14, 6)}
                             color={capColors.alpha}
                             primaryText={key.primary}
                             secondaryText={key.secondary}
@@ -333,7 +333,7 @@ export const KeyLayout = (props: KeysProps) => {
             }
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(23.98, -0.14, 5.7)}
+                groupPos={new Vector3(23.98, -0.14, 6)}
                 capType={'R4_175'}
                 primaryText={'\u21e7'}
                 secondaryText={'Shift'}
@@ -347,7 +347,7 @@ export const KeyLayout = (props: KeysProps) => {
             />
             <KeyCap
                 color={capColors.special}
-                groupPos={new Vector3(26.6, -0.14, 5.7)}
+                groupPos={new Vector3(26.6, -0.14, 6)}
                 capType={'R4_100'}
                 primaryText={'\u2191'}
                 textOptions={{ ...defaultTextOpts, size: .05 }}
@@ -357,7 +357,7 @@ export const KeyLayout = (props: KeysProps) => {
             />
             <KeyCap
                 color={capColors.mod}
-                groupPos={new Vector3(28.5, -0.14, 5.7)}
+                groupPos={new Vector3(28.5, -0.14, 6)}
                 capType={'R4_100'}
                 primaryText={'PgDn'}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
@@ -370,7 +370,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_125'}
                 color={capColors.mod}
                 primaryText={'Control'}
-                groupPos={new Vector3(0.22, -0.14, 7.6)}
+                groupPos={new Vector3(0.22, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
                 primaryTextPos={capTextPos['R4'][125].control.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96, Math.PI / 180 * 1.25, 0)}
@@ -380,7 +380,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_125'}
                 color={capColors.mod}
                 primaryText={'\u2318'}
-                groupPos={new Vector3(2.57, -0.14, 7.6)}
+                groupPos={new Vector3(2.57, -0.14, 8)}
                 textOptions={defaultTextOpts}
                 primaryTextPos={capTextPos['R4'][125].win.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96.5, 0, 0)}
@@ -390,7 +390,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_125'}
                 color={capColors.mod}
                 primaryText={'Alt'}
-                groupPos={new Vector3(4.92, -0.14, 7.6)}
+                groupPos={new Vector3(4.92, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
                 primaryTextPos={capTextPos['R4'][125].alt.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96.2, Math.PI / 180 * 2.25, 0)}
@@ -400,7 +400,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'Space_625'}
                 color={capColors.alpha}
                 primaryText={'\u2318'}
-                groupPos={new Vector3(12.07, -0.1, 7.59)}
+                groupPos={new Vector3(12.07, -0.1, 8)}
                 textOptions={defaultTextOpts}
                 primaryTextPos={capTextPos['R4'][125].control.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -97, Math.PI / 180 * 2, 0)}
@@ -410,7 +410,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_125'}
                 color={capColors.mod}
                 primaryText={'Fn'}
-                groupPos={new Vector3(19.242, -0.14, 7.6)}
+                groupPos={new Vector3(19.242, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
                 primaryTextPos={capTextPos['R4'][125].fn.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96, Math.PI / 180 * 2.8, 0)}
@@ -420,7 +420,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_175'}
                 color={capColors.mod}
                 primaryText={'Control'}
-                groupPos={new Vector3(22.042, -0.14, 7.6)}
+                groupPos={new Vector3(22.042, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .022 }}
                 primaryTextPos={capTextPos['R4'][175].control.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96, Math.PI / 180 * 1.25, 0)}
@@ -430,7 +430,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_100'}
                 color={capColors.special}
                 primaryText={'\u2190'}
-                groupPos={new Vector3(24.656, -0.14, 7.6)}
+                groupPos={new Vector3(24.656, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .05 }}
                 primaryTextPos={capTextPos['R4'][100].horizontal.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96, Math.PI / 180 * 2.5, 0)}
@@ -440,7 +440,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_100'}
                 color={capColors.special}
                 primaryText={'\u2193'}
-                groupPos={new Vector3(26.556, -0.14, 7.6)}
+                groupPos={new Vector3(26.556, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .05 }}
                 primaryTextPos={capTextPos['R4'][100].vertical.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -95.5, Math.PI / 180 * 2.25, 0)}
@@ -450,7 +450,7 @@ export const KeyLayout = (props: KeysProps) => {
                 capType={'R4_100'}
                 color={capColors.special}
                 primaryText={'\u2192'}
-                groupPos={new Vector3(28.5, -0.14, 7.6)}
+                groupPos={new Vector3(28.5, -0.14, 8)}
                 textOptions={{ ...defaultTextOpts, size: .05 }}
                 primaryTextPos={capTextPos['R4'][100].horizontal.primary}
                 primaryTextRot={new Euler(Math.PI / 180 * -96, Math.PI / 180 * 2.5, 0)}

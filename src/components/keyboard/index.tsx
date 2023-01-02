@@ -6,7 +6,7 @@ export const Keyboard = () => {
     return (
         <>
             <KeyboardCase />
-            <KeyLayout groupPos={new Vector3(-14.25, 2.05, -3.75)} />
+            <KeyLayout groupPos={new Vector3(-14.25, 1.75, -4)} />
         </>
     )
 }
