@@ -1,9 +1,11 @@
+import { Desk } from 'components/desk'
+import { Euler, Vector3 } from 'three'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import css from "../styles/Home.module.css";
-import { Keyboard } from 'components/keyboard'
 import { Monitor } from 'components/monitor'
-import { Vector3 } from 'three';
+import css from "../styles/Home.module.css"
+import { Keyboard } from 'components/keyboard'
+import { OrbitControls } from '@react-three/drei'
+import { degToRad } from 'three/src/math/MathUtils'
 
 export default function Home() {
   return (
@@ -16,15 +18,21 @@ export default function Home() {
       >
         <Monitor
           groupPos={new Vector3(-41, 15, -20)}
-
         />
-        <Keyboard />
-        <ambientLight intensity={0.2} />
+        <Keyboard
+          groupPos={new Vector3(-8, 0, 0)}
+          groupRot={new Euler(0, degToRad(-13), 0)} />
+        <Desk
+          groupScale={new Vector3(.8, .75, .75)}
+          groupPos={new Vector3(0, -56.1, 0)}
+        />
+        {/* <ambientLight intensity={.05} color={0xc7cac5} /> */}
         <directionalLight
-          intensity={0.5}
+          intensity={.5}
           color={0xc7cac5}
-          position={[0, 1000, 1000]}
+          position={[0, 500, 500]}
         />
+        <hemisphereLight groundColor={0x000000} intensity={.5} />
         <OrbitControls
           position={[0, 0, 0]}
           minDistance={1}

@@ -1,8 +1,8 @@
 import { useGLTF } from '@react-three/drei'
+import { degToRad } from 'three/src/math/MathUtils'
 import React, { useEffect, useRef, useState } from 'react'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
-import { Color, Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three'
-import { degreesToRadians } from 'utils/degreesToRadians'
+import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three'
 import { updatePosition, updateRotation, updateScale } from 'utils/transform'
 
 type GLTFResult = GLTF
@@ -16,19 +16,12 @@ type GLTFResult = GLTF
 
 type MonitorProps = {
     children?: any,
-    color?: {
-        [key: string]: Color;
-    },
     groupPos?: Vector3,
     groupRot?: Euler,
     groupScale?: Vector3,
 }
 
 let defaultProps = {
-    color: {
-        primary: new Color("#fff"),
-        secondary: new Color("#ffffff"),
-    },
     groupPos: new Vector3(0, 0, 0),
     groupRot: new Euler(0, 0, 0),
     groupScale: new Vector3(1, 1, 1),
@@ -40,13 +33,12 @@ export const Monitor = (
     const { nodes } = useGLTF('assets/models/monitor.glb') as unknown as GLTFResult
     const groupRef = useRef<Group>(null!)
     const defaultMeshScale = new Vector3(100, 100, 100)
-    const defaultMeshRotation = new Euler(0, degreesToRadians(-90), 0)
+    const defaultMeshRotation = new Euler(0, degToRad(-90), 0)
 
     const [monitorMesh] = useState(nodes.monitor)
     const [screenMesh] = useState(nodes.screen)
 
     useEffect(() => {
-        console.log(nodes)
         updatePosition(groupRef, props.groupPos)
         updateRotation(groupRef, props.groupRot)
         updateScale(groupRef, props.groupScale)
@@ -59,8 +51,8 @@ export const Monitor = (
                     return (
                         <mesh
                             key={index}
-                            receiveShadow
-                            castShadow
+                            receiveShadow={true}
+                            castShadow={true}
                             scale={defaultMeshScale}
                             position={child.position}
                             rotation={defaultMeshRotation}
