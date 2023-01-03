@@ -5,17 +5,14 @@ import { Keyboard } from 'components/keyboard'
 import { Monitor } from 'components/monitor'
 import { Vector3 } from 'three';
 
-
-
 export default function Home() {
-
   return (
     <div className={css.scene}>
       <Canvas
         gl={{ logarithmicDepthBuffer: true }}
         shadows={true}
         className={css.canvas}
-        camera={{ position: [0, 0, 100] }}
+        camera={{ position: [0, 30, 100] }}
       >
         <Monitor
           groupPos={new Vector3(-41, 15, -20)}

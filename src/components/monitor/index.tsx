@@ -1,5 +1,4 @@
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 import React, { useEffect, useRef, useState } from 'react'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Color, Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three'
@@ -43,8 +42,8 @@ export const Monitor = (
     const defaultMeshScale = new Vector3(100, 100, 100)
     const defaultMeshRotation = new Euler(0, degreesToRadians(-90), 0)
 
-    const [monitorMesh, setMonitorMesh] = useState(nodes.monitor)
-    const [screenMesh, setScreenMesh] = useState(nodes.screen)
+    const [monitorMesh] = useState(nodes.monitor)
+    const [screenMesh] = useState(nodes.screen)
 
     useEffect(() => {
         console.log(nodes)
