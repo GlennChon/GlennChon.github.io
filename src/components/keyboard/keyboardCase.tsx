@@ -51,15 +51,14 @@ export const KeyboardCase = (
     return (
         <group
             ref={keyboardMesh}
-            dispose={null}
             position={props.groupPos}
             rotation={props.groupRot}
             scale={props.groupScale}
+            receiveShadow={true}
+            castShadow={true}
         >
             <mesh
                 ref={caseMesh}
-                receiveShadow
-                castShadow
                 position={props.casePos}
                 rotation={props.caseRot}
                 scale={nodes.Case.scale}

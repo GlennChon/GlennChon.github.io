@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useMemo } from 'react'
 import { useEventListener } from 'usehooks-ts'
 import { Color, Euler, Vector3 } from 'three'
 import { KeyCap } from './keycap'
@@ -12,26 +12,6 @@ const defaultTextOpts = {
     font: font,
     size: 0.033,
     height: .005
-}
-
-const beige = new Color('#dbccaa')
-const plumPurple = new Color("#665f70")
-const plumRed = new Color("#7a3941")
-
-const capColors = {
-    alpha: {
-        primary: beige,
-        secondary: plumPurple,
-
-    },
-    mod: {
-        primary: plumPurple,
-        secondary: beige,
-    },
-    special: {
-        primary: plumRed,
-        secondary: beige,
-    }
 }
 
 type KeysProps = {
@@ -48,7 +28,23 @@ const defaultKeysProps = {
 
 export const KeyLayout = (props: KeysProps) => {
     const [pressedKeys, setPressedKeys] = useState<string[]>([])
-
+    const beige = new Color("#dbccaa")
+    const plumPurple = new Color("#665f70")
+    const plumRed = new Color("#7a3941")
+    const capColors = useMemo(() => ({
+        alpha: {
+            primary: beige,
+            secondary: plumPurple,
+        },
+        mod: {
+            primary: plumPurple,
+            secondary: beige,
+        },
+        special: {
+            primary: plumRed,
+            secondary: beige,
+        }
+    }), [beige, plumPurple, plumRed])
     const autoKeyUp = (key: any, timeout: number = 5000) => {
         setTimeout(() => {
             setPressedKeys((prev) => prev.filter((i) => i !== `${key}`))
@@ -89,11 +85,12 @@ export const KeyLayout = (props: KeysProps) => {
 
     return (
         <group
-            dispose={null}
+            receiveShadow={true}
+            castShadow={true}
             position={props.groupPos}
             rotation={props.groupRot}
-            scale={props.groupScale}>
-
+            scale={props.groupScale}
+        >
             {/* R1 */}
             <KeyCap
                 color={capColors.special}

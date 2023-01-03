@@ -104,14 +104,14 @@ export const KeyCap = (
     return (
         <group
             ref={keyCap}
+            receiveShadow={true}
+            castShadow={true}
             position={props.groupPos}
             scale={props.groupScale}
-            dispose={null}>
+        >
             {/* Cap */}
             <mesh
                 ref={capMesh}
-                receiveShadow
-                castShadow
                 position={props.capPos}
                 rotation={props.capRot}
                 scale={nodes[`${props.capType}`].scale}
