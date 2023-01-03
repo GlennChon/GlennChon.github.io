@@ -8,7 +8,6 @@ import { OrbitControls } from '@react-three/drei'
 import { degToRad } from 'three/src/math/MathUtils'
 
 export default function Home() {
-  const color = { color: 0x000000 }
   return (
     <div className={css.scene}>
       <Canvas
