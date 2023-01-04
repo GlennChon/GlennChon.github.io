@@ -54,7 +54,6 @@ export const Desk = (
         updatePosition(groupRef, props.groupPos)
         updateRotation(groupRef, props.groupRot)
         updateScale(groupRef, props.groupScale)
-        console.log(MouseMesh)
     }, [props.groupPos, props.groupRot, props.groupScale])
 
     return (
