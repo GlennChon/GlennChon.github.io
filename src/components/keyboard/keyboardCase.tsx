@@ -1,5 +1,5 @@
 import { useGLTF } from '@react-three/drei'
-import React, { useRef } from 'react'
+import { memo, useRef } from 'react'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Color, Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from 'three'
 
@@ -40,7 +40,7 @@ let defaultProps = {
     casePlateRot: new Euler(0, 0, 0),
 }
 
-export const KeyboardCase = (
+const KeyboardCase = (
     props: KeyCaseProps
 ) => {
     const { nodes } = useGLTF('assets/models/keyboardCase.glb') as unknown as GLTFResult
@@ -54,10 +54,12 @@ export const KeyboardCase = (
             position={props.groupPos}
             rotation={props.groupRot}
             scale={props.groupScale}
-            receiveShadow={true}
-            castShadow={true}
+            receiveShadow
+            castShadow
         >
             <mesh
+                receiveShadow
+                castShadow
                 ref={caseMesh}
                 position={props.casePos}
                 rotation={props.caseRot}
@@ -86,6 +88,6 @@ export const KeyboardCase = (
     )
 }
 
-
 KeyboardCase.defaultProps = defaultProps;
 useGLTF.preload('assets/models/keyboardCase.glb')
+export default memo(KeyboardCase)

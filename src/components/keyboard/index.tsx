@@ -1,7 +1,8 @@
-import { KeyLayout } from "./keyLayout"
+import KeyLayout from "./keyLayout"
 import { useEffect, useRef } from "react"
-import { KeyboardCase } from "./keyboardCase"
+import KeyboardCase from "./keyboardCase"
 import { Euler, Group, Vector3 } from "three"
+import { memo } from "react"
 import { updatePosition, updateRotation, updateScale } from "utils/transform"
 
 type KeyboardProps = {
@@ -17,8 +18,7 @@ let defaultProps = {
     groupScale: new Vector3(1, 1, 1),
 }
 
-
-export const Keyboard = (props: KeyboardProps) => {
+const Keyboard = (props: KeyboardProps) => {
     const groupRef = useRef<Group>(null!)
 
     useEffect(() => {
@@ -28,11 +28,13 @@ export const Keyboard = (props: KeyboardProps) => {
     }, [props.groupPos, props.groupRot, props.groupScale])
 
     return (
-        <group ref={groupRef}>
+        <group receiveShadow castShadow ref={groupRef}>
             <KeyboardCase />
             <KeyLayout groupPos={new Vector3(-14.25, 1.75, -4)} />
+            <ambientLight castShadow intensity={.15} color="white" />
         </group>
     )
 }
 
-Keyboard.defaultProps = defaultProps;
+Keyboard.defaultProps = defaultProps
+export default memo(Keyboard)

@@ -1,17 +1,17 @@
-import { Color, Euler, Group, Mesh, Vector3 } from 'three'
-import React, { useRef, useState } from 'react'
+import { GLTF } from 'three-stdlib'
 import { useGLTF } from '@react-three/drei'
+import Mplus from './fonts/Mplus_Round.json'
+import { useRef, useState, memo } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
+import { Color, Euler, Group, Mesh, Vector3 } from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
-import { GLTF } from 'three-stdlib'
-import Mplus from './fonts/Mplus_Round.json'
+
 extend({ TextGeometry })
 
 type GLTFResult = GLTF
     & {
         nodes: Record<string, THREE.Mesh>
-
         materials: {
             Material: THREE.MeshStandardMaterial
         }
@@ -76,7 +76,7 @@ let defaultProps = {
     secondaryTextRot: new Euler(Math.PI / 180 * -90, 0, 0),
     secondaryTextScale: new Vector3(.1, .1, .1),
 }
-export const KeyCap = (
+const KeyCap = (
     props: KeyCapProps
 ) => {
     const { nodes } = useGLTF('assets/models/keycaps.glb') as unknown as GLTFResult
@@ -104,13 +104,15 @@ export const KeyCap = (
     return (
         <group
             ref={keyCap}
-            receiveShadow={true}
-            castShadow={true}
+            receiveShadow
+            castShadow
             position={props.groupPos}
             scale={props.groupScale}
         >
             {/* Cap */}
             <mesh
+                receiveShadow
+                castShadow
                 ref={capMesh}
                 position={props.capPos}
                 rotation={props.capRot}
@@ -123,6 +125,8 @@ export const KeyCap = (
             </mesh>
             {/* Character*/}
             <mesh
+                receiveShadow
+                castShadow
                 ref={charMesh}
                 geometry={textGeo[0]}
                 position={props.primaryTextPos}
@@ -135,6 +139,8 @@ export const KeyCap = (
             </mesh>
             {
                 isDualChar && (<mesh
+                    receiveShadow
+                    castShadow
                     ref={charMesh}
                     geometry={textGeo[1]}
                     position={props.secondaryTextPos}
@@ -149,6 +155,6 @@ export const KeyCap = (
         </group >
     )
 }
-
 KeyCap.defaultProps = defaultProps;
 useGLTF.preload('assets/models/keycaps.glb')
+export default memo(KeyCap)
