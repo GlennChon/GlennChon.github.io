@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import css from "../styles/Home.module.css"
 import { Canvas } from '@react-three/fiber'
 import { Euler, Group, Vector3 } from 'three'
@@ -27,9 +27,15 @@ export default function Home() {
       >
         <color attach="background" args={['black']} />
         {/* Lights */}
-        <hemisphereLight intensity={.4} groundColor="black" />
-        <spotLight position={new Vector3(-150, 500, 500)} angle={45} penumbra={1} intensity={.18} castShadow shadow-mapSize={1024} />
-
+        {/* <ambientLight intensity={.15} color="white" /> */}
+        <hemisphereLight intensity={.3} groundColor="black" />
+        <spotLight position={new Vector3(-150, 500, 500)} angle={45} penumbra={1} intensity={.2} castShadow shadow-mapSize={1024} />
+        <rectAreaLight
+          castShadow
+          intensity={.5}
+          width={1000}
+          height={500}
+          position={new Vector3(-180, -50, 200)} />
         {/* Controls */}
         <OrbitControls
           position={[0, 0, 0]}

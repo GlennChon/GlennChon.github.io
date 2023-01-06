@@ -3,7 +3,6 @@ import { GLTF } from 'three-stdlib'
 import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
-import { degToRad } from 'three/src/math/MathUtils.js'
 
 type GLTFResult = GLTF & {
   nodes: {
