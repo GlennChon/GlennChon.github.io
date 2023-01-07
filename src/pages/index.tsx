@@ -24,13 +24,13 @@ const Lights = () => {
 
   return (
     <>
-      <ambientLight intensity={.1} color="0xfff" />
+      <ambientLight intensity={.1} color="0xffffff" />
       <hemisphereLight castShadow intensity={.2} groundColor="#262626" />
       <directionalLight
         ref={dirLight}
         target={o}
-        color={"#fff"}
-        intensity={.6}
+        color={"#ffffff"}
+        intensity={.4}
         position={[70, 150, 70]}
         shadow-mapSize={1024}
       />
