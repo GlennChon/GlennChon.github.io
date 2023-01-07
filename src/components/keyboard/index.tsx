@@ -31,7 +31,6 @@ const Keyboard = (props: KeyboardProps) => {
         <group receiveShadow castShadow ref={groupRef}>
             <KeyboardCase />
             <KeyLayout groupPos={new Vector3(-14.25, 1.75, -4)} />
-            <ambientLight castShadow intensity={.15} color="white" />
         </group>
     )
 }

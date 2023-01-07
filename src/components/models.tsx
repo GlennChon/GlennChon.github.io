@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import { GLTF } from 'three-stdlib'
-import React, { useEffect } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber'
+import React, { useLayoutEffect, useRef } from 'react'
+import { useGLTF, RenderTexture, PerspectiveCamera, Text } from '@react-three/drei'
+import { useLoader, useFrame } from '@react-three/fiber'
+import { degToRad } from 'three/src/math/MathUtils.js'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -117,24 +118,30 @@ type GLTFResult = GLTF & {
     Screen: THREE.MeshStandardMaterial
     ['Material.001']: THREE.MeshStandardMaterial
     ['Material.002']: THREE.MeshPhysicalMaterial
-    ['Black_Metal_Paint']: THREE.MeshPhongMaterial
+    ['Black_Metal_Paint']: THREE.MeshStandardMaterial
     material_0: THREE.MeshStandardMaterial
   }
 }
 
+
 export const Models = (props: JSX.IntrinsicElements['group']) => {
   const { nodes, materials } = useGLTF('assets/models/models.glb') as unknown as GLTFResult
   const mousepadTexture = useLoader(THREE.TextureLoader, 'assets/textures/black-squared-fabric-texture.jpg')
-  useEffect(() => {
+
+  const textRef = useRef<any>()
+  const rand = Math.random() * 100
+  useFrame((state) => (textRef.current.position.x = 1 + Math.sin(rand + state.clock.elapsedTime / 4) * 8))
+
+  useLayoutEffect(() => {
     const repeatX = 150
     const repeatY = 150
     mousepadTexture.wrapS = THREE.RepeatWrapping
     mousepadTexture.wrapT = THREE.RepeatWrapping
     mousepadTexture.repeat.set(repeatX, repeatY)
-  }, [])
+  })
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} castShadow receiveShadow>
       <mesh castShadow receiveShadow geometry={nodes.mouse.geometry} material={materials.material_0} />
       <mesh castShadow receiveShadow geometry={nodes.base.geometry}  >
         <meshStandardMaterial
@@ -164,7 +171,27 @@ export const Models = (props: JSX.IntrinsicElements['group']) => {
       <mesh castShadow receiveShadow geometry={nodes.ID319002.geometry} material={materials['_0136_Charcoal.002']} />
       <mesh castShadow receiveShadow geometry={nodes.ID319002_1.geometry} material={materials['Color_M08.002']} />
       <mesh castShadow receiveShadow geometry={nodes.ID331002.geometry} material={materials['_0136_Charcoal.002']} />
-      <mesh castShadow receiveShadow geometry={nodes.ID331002_1.geometry} material={materials['_2017-04-24_325417346.JPG.fe8288208c85a39f8134662cf90bbed6.002']} />
+      {/* <mesh castShadow receiveShadow geometry={nodes.ID331002_1.geometry} material={materials['_2017-04-24_325417346.JPG.fe8288208c85a39f8134662cf90bbed6.002']} /> */}
+      <mesh geometry={nodes.ID331002_1.geometry}>
+        <meshBasicMaterial toneMapped={true}>
+          <RenderTexture width={512} height={512} attach="map" anisotropy={16}>
+            <PerspectiveCamera makeDefault manual aspect={1 / 1} position={[0, 0, 15]} />
+            <ambientLight intensity={0.2} />
+            <directionalLight position={[10, 10, 5]} />
+            <mesh castShadow receiveShadow attach={"background"} material={materials['_2017-04-24_325417346.JPG.fe8288208c85a39f8134662cf90bbed6.002']} />
+            <Text
+              font="assets/NeonTubes2-Regular.woff"
+              position={[0, 1.2, 0]}
+              rotation={[degToRad(180), 0, 0]}
+              ref={textRef}
+              fontSize={4}
+              letterSpacing={0}
+              color={'#003990'}>
+              Glenn Chon
+            </Text>
+          </RenderTexture>
+        </meshBasicMaterial>
+      </mesh>
       <mesh castShadow receiveShadow geometry={nodes.ID381002.geometry} material={materials['_0136_Charcoal.002']} />
       <mesh castShadow receiveShadow geometry={nodes.ID381002_1.geometry} material={materials['material.002']} />
       <mesh castShadow receiveShadow geometry={nodes.ID381002_2.geometry} material={materials['material_0.002']} />
