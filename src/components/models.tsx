@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { GLTF } from 'three-stdlib'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
 
