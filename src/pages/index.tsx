@@ -1,19 +1,22 @@
 import { Suspense, useRef, useState } from 'react'
 import css from "../styles/Home.module.css"
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   DirectionalLight,
   Euler,
   Group,
+  MathUtils,
   Object3D,
   Vector3
 } from 'three'
 import { Keyboard } from 'components'
 import { degToRad } from 'three/src/math/MathUtils'
-import { BakeShadows, ContactShadows, MeshReflectorMaterial, OrbitControls } from '@react-three/drei'
+import { ContactShadows, MeshReflectorMaterial, ScrollControls, useScroll } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { Models } from 'components/models'
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js"
+
+const rsqw = (t, delta = 0.1, a = 1, f = 1 / (2 * Math.PI)) => (a / Math.atan(1 / delta)) * Math.atan(Math.sin(2 * Math.PI * t * f) / delta)
 
 const Lights = () => {
   let dirLight = useRef<DirectionalLight>(null)
@@ -92,10 +95,70 @@ const Lights = () => {
   )
 }
 
+const Composition = ({ ...props }) => {
+
+  const groupRef = useRef<Group>(null)
+  const modelsRef = useRef<Group>(null)
+  const scroll = useScroll()
+  const { width, height } = useThree((state) => state.viewport)
+
+  useFrame((state, delta) => {
+    const r1 = scroll.range(0 / 4, 2 / 4)
+    const r2 = scroll.range(1 / 4, 1 / 4)
+    const r3 = scroll.visible(4 / 5, 1 / 5)
+    groupRef.current.rotation.y = MathUtils.damp(groupRef.current.rotation.y, (-Math.PI / 5) * r2, 4, delta)
+    groupRef.current.position.x = MathUtils.damp(groupRef.current.position.x, (-width / 100) * r2, 4, delta)
+    groupRef.current.scale.x = groupRef.current.scale.y = groupRef.current.scale.z = MathUtils.damp(groupRef.current.scale.z, 1 + 0.24 * (1 - rsqw(r1)), 4, delta)
+
+  })
+  return (
+    <group ref={groupRef}>
+      <fog attach="fog" args={['rgba(38, 38, 38, 0.8)', -5, 800]} />
+      <color attach="background" args={['rgba(36, 36, 36, .8)']} />
+      <Lights />
+      <group ref={modelsRef} rotation={[0, degToRad(35), 0]} scale={new Vector3(.5, .5, .5)}>
+        <Models
+          castShadow
+          receiveShadow
+          position={new Vector3(0, 0, 0)}
+          scale={new Vector3(.5, .5, .5)}
+        />
+        <Keyboard
+          groupScale={new Vector3(1.15, 1.15, 1.15)}
+          groupPos={new Vector3(-8, -7, 10)}
+          groupRot={new Euler(0, degToRad(-13), 0)} />
+        <ContactShadows position={[0, -0.8, 0]} opacity={0.25} scale={10} blur={1.5} far={0.8} />
+        <mesh receiveShadow renderOrder={-2} rotation={[-Math.PI / 2, 0, 0]} position={new Vector3(0, -82, 0)}>
+          <planeGeometry args={[350, 350]} />
+          <MeshReflectorMaterial
+            blur={[512, 512]}
+            resolution={1024}
+            mixBlur={1}
+            mixContrast={1.5}
+            mixStrength={20}
+            opacity={2}
+            depthScale={1}
+            minDepthThreshold={0.4}
+            maxDepthThreshold={1.25}
+            roughness={1}
+            color="rgba(38, 38, 38, 1)"
+            mirror={1}
+          />
+        </mesh>
+      </group>
+      {/* <BakeShadows /> */}
+    </group>
+  )
+}
+
 
 export default function Home() {
-  const groupMesh = useRef<Group>(null)
+
   RectAreaLightUniformsLib.init()
+
+
+
+
   // TODO: Camera move to click locations
   // https://codesandbox.io/s/bounds-and-makedefault-rz2g0
   // https://codesandbox.io/s/basic-clerping-example-qh8vhf?file=/src/Scene.js
@@ -106,58 +169,20 @@ export default function Home() {
       <Canvas
         shadows
         className={css.canvas}
-        camera={{ position: [0, 60, 400], fov: 25, }}
+        camera={{ position: [0, 75, 150], fov: 25, }}
         dpr={[1, 1.5]}
         gl={{ logarithmicDepthBuffer: true, antialias: true }}
       >
-        <fog attach="fog" args={['rgba(38, 38, 38, 0.8)', -5, 800]} />
-        <color attach="background" args={['rgba(38, 38, 38, 1)']} />
-        {/* Lights */}
-        <Lights />
         {/* Controls */}
-        <OrbitControls
-          position={[0, 0, 0]}
-          minDistance={1}
-          minZoom={0.1}
-          maxDistance={400}
-        />
-        <Suspense fallback={null}>
-          <group ref={groupMesh} rotation={[0, degToRad(35), 0]} scale={new Vector3(.5, .5, .5)} castShadow>
-            <Models
-              castShadow
-              receiveShadow
-              position={new Vector3(0, 0, 0)}
-              scale={new Vector3(.5, .5, .5)}
-            />
-            <Keyboard
-              groupScale={new Vector3(1.15, 1.15, 1.15)}
-              groupPos={new Vector3(-8, -7, 10)}
-              groupRot={new Euler(0, degToRad(-13), 0)} />
-            <ContactShadows position={[0, -0.8, 0]} opacity={0.25} scale={10} blur={1.5} far={0.8} />
-            <mesh receiveShadow renderOrder={-2} rotation={[-Math.PI / 2, 0, 0]} position={new Vector3(0, -82, 0)}>
-              <planeGeometry args={[350, 350]} />
-              <MeshReflectorMaterial
-                blur={[512, 512]}
-                resolution={1024}
-                mixBlur={1}
-                mixContrast={1.5}
-                mixStrength={20}
-                opacity={2}
-                depthScale={1}
-                minDepthThreshold={0.4}
-                maxDepthThreshold={1.25}
-                roughness={1}
-                color="rgba(38, 38, 38, 1)"
-                mirror={1}
-              />
-            </mesh>
-          </group>
-          <BakeShadows />
-        </Suspense>
-        {/* Postprocessing */}
-        <EffectComposer disableNormalPass>
-          <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0.0} intensity={2} />
-        </EffectComposer>
+        <ScrollControls pages={5} >
+          <Suspense fallback={null}>
+            <Composition />
+          </Suspense>
+          {/* Postprocessing */}
+          <EffectComposer disableNormalPass>
+            <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0.0} intensity={2} />
+          </EffectComposer>
+        </ScrollControls>
       </Canvas>
     </div >
   )
