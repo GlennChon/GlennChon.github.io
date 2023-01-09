@@ -3,7 +3,7 @@ import { useEventListener } from 'usehooks-ts'
 import { Color, Euler, Vector3 } from 'three'
 import KeyCap from './keycap'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
-import Mplus from './fonts/Mplus_Round.json'
+import Mplus from '../fonts/Mplus_Round.json'
 import { capTextPos } from './keys'
 import { degToRad } from 'three/src/math/MathUtils.js'
 
@@ -29,9 +29,9 @@ const defaultKeysProps = {
 
 const KeyLayout = (props: KeysProps) => {
     const [pressedKeys, setPressedKeys] = useState<string[]>([])
-    const beige = new Color("rgb(219, 204, 170)")
-    const plumPurple = new Color("rgb(102, 95, 112)")
-    const plumRed = new Color("rgb(122, 57, 65)")
+    const beige = new Color("rgba(219, 204, 170, 0.8)")
+    const plumPurple = new Color("rgba(102, 95, 112, 0.8)")
+    const plumRed = new Color("rgba(122, 57, 65, 0.8)")
     const capColors = {
         alpha: {
             primary: beige,

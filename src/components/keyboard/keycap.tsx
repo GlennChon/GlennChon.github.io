@@ -1,6 +1,6 @@
 import { GLTF } from 'three-stdlib'
 import { useGLTF } from '@react-three/drei'
-import Mplus from './fonts/Mplus_Round.json'
+import Mplus from '../fonts/Mplus_Round.json'
 import { useRef, useState, memo } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
 import { Color, Euler, Group, Mesh, Vector3 } from 'three'
@@ -58,8 +58,8 @@ const defaultTextOpts = {
 // Colors
 let defaultProps = {
     color: {
-        primary: new Color("rgb(255, 255, 255)"),
-        secondary: new Color("rgb(38, 38, 38)"),
+        primary: new Color("rgba(255, 255, 255, 1)"),
+        secondary: new Color("rgba(38, 38, 38, 1)"),
     },
     groupPos: new Vector3(0, 0, 0),
     groupScale: new Vector3(100, 100, 100),

@@ -25,8 +25,8 @@ const Lights = () => {
   return (
     <>
       {/* TODO: convert colors to RGBA */}
-      <ambientLight intensity={.1} color="rgba(255, 255, 255,.9)" />
-      <hemisphereLight intensity={.2} groundColor="rgb(38, 38, 38)" />
+      <ambientLight intensity={.025} color="rgba(255, 255, 255,.9)" />
+      <hemisphereLight intensity={.2} groundColor="rgba(38, 38, 38, .8)" />
       <directionalLight
         ref={dirLight}
         target={o}
@@ -37,7 +37,7 @@ const Lights = () => {
       />
       {/* Monitor */}
       <rectAreaLight
-        color={'rgb(0, 57, 144)'}
+        color={'rgba(0, 57, 144, .9)'}
         intensity={10}
         width={36}
         height={16.5}
@@ -45,16 +45,16 @@ const Lights = () => {
         rotation={[0, degToRad(215), 0]} />
       {/* laptop screen */}
       <rectAreaLight
-        color={'rgb(23, 50, 103)'}
-        intensity={30}
+        color={'rgba(23, 50, 103, .9)'}
+        intensity={45}
         width={12}
         height={30}
         position={[-30, 15, 20]}
         rotation={[0, degToRad(-112), 0]} />
       {/* laptop front light */}
       <rectAreaLight
-        color={'rgb(0, 87, 220)'}
-        intensity={10}
+        color={'rgba(0, 87, 220,.5)'}
+        intensity={20}
         width={17.8}
         height={.25}
         position={[-20.6, -3.5, 24.8]}
@@ -62,8 +62,8 @@ const Lights = () => {
       />
       {/* laptop rear light */}
       <rectAreaLight
-        color={'rgb(0, 87, 220)'}
-        intensity={10}
+        color={'rgba(0, 87, 220,.5)'}
+        intensity={20}
         width={16}
         height={0.25}
         // position={[-75, -7, -4]}
@@ -72,8 +72,8 @@ const Lights = () => {
       />
       {/* laptop left light */}
       <rectAreaLight
-        color={'rgb(0, 87, 220)'}
-        intensity={15}
+        color={'rgba(0, 87, 220,.5)'}
+        intensity={25}
         width={4.75}
         height={0.25}
         position={[-26.25, -3.5, 32.1]}
@@ -81,8 +81,8 @@ const Lights = () => {
       />
       {/* laptop right light */}
       <rectAreaLight
-        color={'rgb(0, 87, 220)'}
-        intensity={15}
+        color={'rgba(0, 87, 220,.5)'}
+        intensity={25}
         width={4.75}
         height={0.25}
         // position={[-65, 2, -11]}
@@ -112,8 +112,8 @@ export default function Home() {
         dpr={[1, 1.5]}
         gl={{ logarithmicDepthBuffer: true, antialias: true }}
       >
-        <fog attach="fog" args={['rgb(38, 38, 38)', 0, 1000]} />
-        <color attach="background" args={['rgb(38, 38, 38)']} />
+        <fog attach="fog" args={['rgba(38, 38, 38, 0.8)', -5, 800]} />
+        <color attach="background" args={['rgba(38, 38, 38, 1)']} />
         {/* Lights */}
         <Lights />
         {/* Controls */}
@@ -149,7 +149,7 @@ export default function Home() {
                 minDepthThreshold={0.4}
                 maxDepthThreshold={1.25}
                 roughness={1}
-                color="rgb(38, 38, 38)"
+                color="rgba(38, 38, 38, 1)"
                 mirror={1}
               />
             </mesh>

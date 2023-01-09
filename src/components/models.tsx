@@ -180,13 +180,14 @@ export const Models = (props: JSX.IntrinsicElements['group']) => {
             <directionalLight position={[10, 10, 5]} />
             <mesh castShadow receiveShadow attach={"background"} material={materials['_2017-04-24_325417346.JPG.fe8288208c85a39f8134662cf90bbed6.002']} />
             <Text
-              font="assets/NeonTubes2-Regular.woff"
+              font={"https://fonts.gstatic.com/s/monoton/v9/5h1aiZUrOngCibe4fkU.woff"}
+              characters="abcdefghijklmnopqrstuvwxyz0123456789!"
               position={[0, 1.2, 0]}
               rotation={[degToRad(180), 0, 0]}
               ref={textRef}
-              fontSize={4}
+              fontSize={3}
               letterSpacing={0}
-              color={'rgb(0, 57, 144)'}>
+              color={'rgba(0, 57, 144,.75)'}>
               Glenn Chon
             </Text>
           </RenderTexture>
