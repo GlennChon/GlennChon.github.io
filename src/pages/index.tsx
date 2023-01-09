@@ -24,7 +24,6 @@ const Lights = () => {
 
   return (
     <>
-      {/* TODO: convert colors to RGBA */}
       <ambientLight intensity={.025} color="rgba(255, 255, 255,.9)" />
       <hemisphereLight intensity={.2} groundColor="rgba(38, 38, 38, .8)" />
       <directionalLight
@@ -101,7 +100,6 @@ export default function Home() {
   // https://codesandbox.io/s/bounds-and-makedefault-rz2g0
   // https://codesandbox.io/s/basic-clerping-example-qh8vhf?file=/src/Scene.js
   // Route transitions https://codesandbox.io/s/router-transitions-4j2q2
-
 
   return (
     <div className={css.scene}>
