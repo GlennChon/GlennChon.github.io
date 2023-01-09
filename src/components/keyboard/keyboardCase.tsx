@@ -28,8 +28,8 @@ type KeyCaseProps = {
 }
 let defaultProps = {
     color: {
-        primary: new Color("#bdbeba"),
-        secondary: new Color("#8a8b88"),
+        primary: new Color("rgb(116, 116, 115)"),
+        secondary: new Color("rgb(138, 139, 136)"),
     },
     groupPos: new Vector3(0, 0, 0),
     groupScale: new Vector3(100, 100, 100),

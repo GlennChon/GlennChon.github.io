@@ -186,7 +186,7 @@ export const Models = (props: JSX.IntrinsicElements['group']) => {
               ref={textRef}
               fontSize={4}
               letterSpacing={0}
-              color={'#003990'}>
+              color={'rgb(0, 57, 144)'}>
               Glenn Chon
             </Text>
           </RenderTexture>
@@ -252,10 +252,6 @@ export const Models = (props: JSX.IntrinsicElements['group']) => {
 
       </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Cube_9.geometry} material={materials.Screen} >
-        {/* <ambientLight intensity={0.5} color={0xfff} /> */}
-        {/* 0x001b4c */}
-
-        {/* degToRad(210) */}
       </mesh>
       <mesh castShadow receiveShadow geometry={nodes.Cube002.geometry} material={materials['Material.001']} />
       <mesh castShadow receiveShadow geometry={nodes.Cube002_1.geometry} material={materials['Material.002']} />

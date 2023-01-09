@@ -29,9 +29,9 @@ const defaultKeysProps = {
 
 const KeyLayout = (props: KeysProps) => {
     const [pressedKeys, setPressedKeys] = useState<string[]>([])
-    const beige = new Color("#dbccaa")
-    const plumPurple = new Color("#665f70")
-    const plumRed = new Color("#7a3941")
+    const beige = new Color("rgb(219, 204, 170)")
+    const plumPurple = new Color("rgb(102, 95, 112)")
+    const plumRed = new Color("rgb(122, 57, 65)")
     const capColors = {
         alpha: {
             primary: beige,

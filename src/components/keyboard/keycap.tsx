@@ -58,8 +58,8 @@ const defaultTextOpts = {
 // Colors
 let defaultProps = {
     color: {
-        primary: new Color("#fff"),
-        secondary: new Color("#000"),
+        primary: new Color("rgb(255, 255, 255)"),
+        secondary: new Color("rgb(38, 38, 38)"),
     },
     groupPos: new Vector3(0, 0, 0),
     groupScale: new Vector3(100, 100, 100),

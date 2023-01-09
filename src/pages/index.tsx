@@ -24,19 +24,20 @@ const Lights = () => {
 
   return (
     <>
-      <ambientLight intensity={.1} color="0xffffff" />
-      <hemisphereLight castShadow intensity={.2} groundColor="#262626" />
+      {/* TODO: convert colors to RGBA */}
+      <ambientLight intensity={.1} color="rgba(255, 255, 255,.9)" />
+      <hemisphereLight intensity={.2} groundColor="rgb(38, 38, 38)" />
       <directionalLight
         ref={dirLight}
         target={o}
-        color={"#ffffff"}
-        intensity={.4}
+        color={"rgba(255, 255, 255,.9)"}
+        intensity={.8}
         position={[70, 150, 70]}
         shadow-mapSize={1024}
       />
       {/* Monitor */}
       <rectAreaLight
-        color={0x003990}
+        color={'rgb(0, 57, 144)'}
         intensity={10}
         width={36}
         height={16.5}
@@ -44,7 +45,7 @@ const Lights = () => {
         rotation={[0, degToRad(215), 0]} />
       {/* laptop screen */}
       <rectAreaLight
-        color={0x173267}
+        color={'rgb(23, 50, 103)'}
         intensity={30}
         width={12}
         height={30}
@@ -52,43 +53,41 @@ const Lights = () => {
         rotation={[0, degToRad(-112), 0]} />
       {/* laptop front light */}
       <rectAreaLight
-        color={0x0057dc}
-        intensity={12}
-        width={18}
-        height={0.25}
-        // position={[-65, 2, -11]}
-        position={[-62.2, -7, 17]}
-        rotation={[degToRad(0), degToRad(-148), degToRad(0)]}
+        color={'rgb(0, 87, 220)'}
+        intensity={10}
+        width={17.8}
+        height={.25}
+        position={[-20.6, -3.5, 24.8]}
+        rotation={[degToRad(0), degToRad(-112.8), degToRad(0)]}
       />
       {/* laptop rear light */}
       <rectAreaLight
-        color={0x0057dc}
-        intensity={12}
+        color={'rgb(0, 87, 220)'}
+        intensity={10}
         width={16}
         height={0.25}
-        // position={[-65, 2, -11]}
-        position={[-75.2, -7, -4]}
-        rotation={[degToRad(0), degToRad(32), degToRad(0)]}
+        // position={[-75, -7, -4]}
+        position={[-31.8, -3.5, 20]}
+        rotation={[degToRad(0), degToRad(67), degToRad(0)]}
       />
       {/* laptop left light */}
       <rectAreaLight
-        color={0x0057dc}
-        intensity={12}
-        width={5}
+        color={'rgb(0, 87, 220)'}
+        intensity={15}
+        width={4.75}
         height={0.25}
-        // position={[-65, 2, -11]}
-        position={[-79.8, -7, 22.5]}
-        rotation={[degToRad(0), degToRad(122), degToRad(0)]}
+        position={[-26.25, -3.5, 32.1]}
+        rotation={[degToRad(0), degToRad(157), degToRad(0)]}
       />
       {/* laptop right light */}
       <rectAreaLight
-        color={0x0057dc}
-        intensity={12}
-        width={5}
+        color={'rgb(0, 87, 220)'}
+        intensity={15}
+        width={4.75}
         height={0.25}
         // position={[-65, 2, -11]}
-        position={[-49.25, -7, 4]}
-        rotation={[degToRad(0), degToRad(-58), degToRad(0)]}
+        position={[-19.4, -3.5, 15.625]}
+        rotation={[degToRad(0), degToRad(-22.8), degToRad(0)]}
       />
     </>
   )
@@ -113,8 +112,8 @@ export default function Home() {
         dpr={[1, 1.5]}
         gl={{ logarithmicDepthBuffer: true, antialias: true }}
       >
-        <fog attach="fog" args={['#101010', 0, 1000]} />
-        <color attach="background" args={['#262626']} />
+        <fog attach="fog" args={['rgb(38, 38, 38)', 0, 1000]} />
+        <color attach="background" args={['rgb(38, 38, 38)']} />
         {/* Lights */}
         <Lights />
         {/* Controls */}
@@ -126,8 +125,6 @@ export default function Home() {
         />
         <Suspense fallback={null}>
           <group ref={groupMesh} rotation={[0, degToRad(35), 0]} scale={new Vector3(.5, .5, .5)} castShadow>
-            {/* model lights */}
-            {/* monitor Light */}
             <Models
               castShadow
               receiveShadow
@@ -152,7 +149,7 @@ export default function Home() {
                 minDepthThreshold={0.4}
                 maxDepthThreshold={1.25}
                 roughness={1}
-                color="#262626"
+                color="rgb(38, 38, 38)"
                 mirror={1}
               />
             </mesh>
