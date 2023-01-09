@@ -100,16 +100,16 @@ const Composition = () => {
   const groupRef = useRef<Group>(null)
   const modelsRef = useRef<Group>(null)
   const scroll = useScroll()
-  const { width, height } = useThree((state) => state.viewport)
+  const { width } = useThree((state) => state.viewport)
+
 
   useFrame((_state, delta) => {
     const r1 = scroll.range(0 / 4, 2 / 4)
     const r2 = scroll.range(1 / 4, 1 / 4)
-    const r3 = scroll.visible(4 / 5, 1 / 5)
+    // const r3 = scroll.visible(4 / 5, 1 / 5)
     groupRef.current.rotation.y = MathUtils.damp(groupRef.current.rotation.y, (-Math.PI / 5) * r2, 4, delta)
     groupRef.current.position.x = MathUtils.damp(groupRef.current.position.x, (-width / 100) * r2, 4, delta)
     groupRef.current.scale.x = groupRef.current.scale.y = groupRef.current.scale.z = MathUtils.damp(groupRef.current.scale.z, 1 + 0.24 * (1 - rsqw(r1)), 4, delta)
-    console.log(height, r3)
   })
   return (
     <group ref={groupRef}>
