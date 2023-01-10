@@ -6,7 +6,7 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import Mplus from '../fonts/Mplus_Round.json'
 import { capTextPos } from './keys'
 import { degToRad } from 'three/src/math/MathUtils.js'
-
+import colors from 'constants/colors'
 // Font
 const font = new FontLoader().parse(Mplus)
 const defaultTextOpts = {
@@ -29,9 +29,9 @@ const defaultKeysProps = {
 
 const KeyLayout = (props: KeysProps) => {
     const [pressedKeys, setPressedKeys] = useState<string[]>([])
-    const beige = new Color("rgba(219, 204, 170, 0.8)")
-    const plumPurple = new Color("rgba(102, 95, 112, 0.8)")
-    const plumRed = new Color("rgba(122, 57, 65, 0.8)")
+    const beige = new Color(colors.peach)
+    const plumPurple = new Color(colors.plum)
+    const plumRed = new Color(colors.burgundy)
     const capColors = {
         alpha: {
             primary: beige,

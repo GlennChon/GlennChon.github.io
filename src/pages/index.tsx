@@ -15,7 +15,7 @@ import { ContactShadows, MeshReflectorMaterial, ScrollControls, useScroll } from
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { Models } from 'components/models'
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js"
-
+import colors from 'constants/colors'
 const rsqw = (t, delta = 0.1, a = 1, f = 1 / (2 * Math.PI)) => (a / Math.atan(1 / delta)) * Math.atan(Math.sin(2 * Math.PI * t * f) / delta)
 
 const Lights = () => {
@@ -27,19 +27,24 @@ const Lights = () => {
 
   return (
     <>
-      <ambientLight intensity={.025} color="rgba(255, 255, 255,.9)" />
-      <hemisphereLight intensity={.2} groundColor="rgba(38, 38, 38, .8)" />
+      <ambientLight intensity={.02} color={colors.white} />
+      <spotLight intensity={.02} color={colors.white} position={[50, 100, 200]}
+        distance={30}
+        angle={Math.PI * 0.05}
+        penumbra={0.25}
+        decay={0.5} />
+      <hemisphereLight intensity={.5} groundColor={colors.darkGray} />
       <directionalLight
         ref={dirLight}
         target={o}
-        color={"rgba(255, 255, 255,.9)"}
+        color={colors.white}
         intensity={.8}
         position={[70, 150, 70]}
         shadow-mapSize={1024}
       />
       {/* Monitor */}
       <rectAreaLight
-        color={'rgba(0, 57, 144, .9)'}
+        color={colors.blue}
         intensity={10}
         width={36}
         height={16.5}
@@ -47,7 +52,7 @@ const Lights = () => {
         rotation={[0, degToRad(215), 0]} />
       {/* laptop screen */}
       <rectAreaLight
-        color={'rgba(23, 50, 103, .9)'}
+        color={colors.darkBlue}
         intensity={45}
         width={12}
         height={30}
@@ -55,7 +60,7 @@ const Lights = () => {
         rotation={[0, degToRad(-112), 0]} />
       {/* laptop front light */}
       <rectAreaLight
-        color={'rgba(0, 87, 220,.5)'}
+        color={colors.lightBlue}
         intensity={20}
         width={17.8}
         height={.25}
@@ -64,7 +69,7 @@ const Lights = () => {
       />
       {/* laptop rear light */}
       <rectAreaLight
-        color={'rgba(0, 87, 220,.5)'}
+        color={colors.lightBlue}
         intensity={20}
         width={16}
         height={0.25}
@@ -74,7 +79,7 @@ const Lights = () => {
       />
       {/* laptop left light */}
       <rectAreaLight
-        color={'rgba(0, 87, 220,.5)'}
+        color={colors.lightBlue}
         intensity={25}
         width={4.75}
         height={0.25}
@@ -83,11 +88,10 @@ const Lights = () => {
       />
       {/* laptop right light */}
       <rectAreaLight
-        color={'rgba(0, 87, 220,.5)'}
+        color={colors.lightBlue}
         intensity={25}
         width={4.75}
         height={0.25}
-        // position={[-65, 2, -11]}
         position={[-19.4, -3.5, 15.625]}
         rotation={[degToRad(0), degToRad(-22.8), degToRad(0)]}
       />
@@ -113,8 +117,7 @@ const Composition = () => {
   })
   return (
     <group ref={groupRef}>
-      <fog attach="fog" args={['rgba(38, 38, 38, 0.8)', -5, 800]} />
-      <color attach="background" args={['rgba(36, 36, 36, .8)']} />
+      <fog attach="fog" args={[colors.black, -5, 800]} />
       <Lights />
       <group ref={modelsRef} rotation={[0, degToRad(35), 0]} scale={new Vector3(.5, .5, .5)}>
         <Models
@@ -129,20 +132,21 @@ const Composition = () => {
           groupRot={new Euler(0, degToRad(-13), 0)} />
         <ContactShadows position={[0, -0.8, 0]} opacity={0.25} scale={10} blur={1.5} far={0.8} />
         <mesh receiveShadow renderOrder={-2} rotation={[-Math.PI / 2, 0, 0]} position={new Vector3(0, -82, 0)}>
-          <planeGeometry args={[350, 350]} />
+          <planeGeometry args={[1500, 750]} />
           <MeshReflectorMaterial
             blur={[512, 512]}
             resolution={1024}
-            mixBlur={1}
+            mixBlur={2}
             mixContrast={1.5}
             mixStrength={20}
-            opacity={2}
+            opacity={0.5}
             depthScale={1}
             minDepthThreshold={0.4}
             maxDepthThreshold={1.25}
-            roughness={1}
-            color="rgba(38, 38, 38, 1)"
-            mirror={1}
+            roughness={.5}
+            color={colors.darkGray}
+            mirror={.1}
+            metalness={.9}
           />
         </mesh>
       </group>

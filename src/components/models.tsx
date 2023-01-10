@@ -4,6 +4,7 @@ import React, { useLayoutEffect, useRef } from 'react'
 import { useGLTF, RenderTexture, PerspectiveCamera, Text } from '@react-three/drei'
 import { useLoader, useFrame } from '@react-three/fiber'
 import { degToRad } from 'three/src/math/MathUtils.js'
+import colors from 'constants/colors'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -187,7 +188,7 @@ export const Models = (props: JSX.IntrinsicElements['group']) => {
               ref={textRef}
               fontSize={3}
               letterSpacing={0}
-              color={'rgba(0, 57, 144, 0.5)'}>
+              color={colors.darkBlue}>
               Glenn Chon
             </Text>
           </RenderTexture>
